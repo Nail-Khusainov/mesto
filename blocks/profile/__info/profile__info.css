@@ -1,0 +1,22 @@
+.profile__info {
+    color: white;
+    margin: 0 0 0 30px;
+    /* border: 1px solid red;  */
+    display: grid;
+    grid-template-columns: repeat(2, auto);
+    justify-content: center;
+    gap: 10px 24px;
+    max-width: 336px;
+    padding: 0;
+}
+
+
+@media screen and (max-width: 600px) {
+    .profile__info {
+        gap: 6px 10px;
+        margin-top: 24px;
+    }
+}
+
+
+
