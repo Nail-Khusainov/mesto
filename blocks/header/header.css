@@ -3,7 +3,6 @@
     margin: 0 auto;
     border-bottom: 1px solid #545454;
     display: flex;
-    /* border: 1px red solid; */
     max-width: 880px;
     box-sizing: border-box;
 }
