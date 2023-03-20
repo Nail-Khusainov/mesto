@@ -4,7 +4,3 @@
     transition-timing-function: ease;
     cursor: pointer;
 }
-
-.button:hover {
-    opacity: .5;
-}

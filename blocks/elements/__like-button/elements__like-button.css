@@ -10,3 +10,7 @@
     margin: 0;
     border: transparent;
 }
+
+.elements__like-button:hover {
+    opacity: .5;
+}

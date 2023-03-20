@@ -6,7 +6,6 @@
     background-position: center;
     background-repeat: no-repeat;
     background-color: transparent;
-    cursor: pointer;
     align-self: center;
     margin: 0;
     border: transparent;
@@ -14,6 +13,10 @@
     top: -38px;
     right: -38px;
     border-radius: 5px;
+}
+
+.popup__close-button:hover {
+    opacity: .6;
 }
 
 @media screen and (max-width: 600px) {

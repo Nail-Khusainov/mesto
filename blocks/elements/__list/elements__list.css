@@ -1,17 +1,11 @@
 .elements__list {
     display: grid;
     grid-template-columns: repeat(auto-fit, 282px);
-    grid-gap: 20px 17px;
+    gap: 20px 17px;
     padding: 0;
     list-style: none;
     margin: 0 auto;
     justify-content: center;
-}
-
-@media screen and (max-width: 600px) {
-    .elements__list {
-        row-gap: 20px;
-    }
 }
 
 
