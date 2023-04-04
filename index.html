@@ -31,9 +31,10 @@
 
         <section class="elements">
             <ul class="elements__list">
-                
-                <li class="elements__card">
+
+                <!-- <li class="elements__card">
                     <img class="elements__image" src="./images/karachaevsk.jpg" alt="Карачаевск">
+                    <button class="button elements__delete-button" type="button"></button>
                     <div class="elements__card-info">
                         <h2 class="elements__card-title">Карачаевск</h2>
                         <button class="button elements__like-button" type="button"></button>
@@ -78,7 +79,7 @@
                         <h2 class="elements__card-title">Карачаево-Черкессия</h2>
                         <button class="button elements__like-button" type="button"></button>
                     </div>
-                </li>
+                </li> -->
             </ul>
         </section>
     </main>
@@ -98,6 +99,53 @@
                 </form>
             </div>
         </div>
+
+        <div class="popup popup__edit-profile">
+            <div class="popup__container">
+                <button class="button popup__close-button" type="button"></button>
+                <h2 class="popup__title">Редактировать профиль</h2>
+                <form class="popup__form" name="user_info">
+                    <input class="popup__input popup__input_type_name" name="user_name" type="text" placeholder="ваше имя">
+                    <input class="popup__input popup__input_type_job" name="user_about" type="text" placeholder="ваша профессия">
+                    <button class="button popup__submit-button" type="submit">Сохранить</button>
+                </form>
+            </div>
+        </div>
+
+        <div class="popup popup__card-add">
+            <div class="popup__container">
+                <button class="button popup__close-button" type="button"></button>
+                <h2 class="popup__title">Новое место</h2>
+                <form class="popup__form" name="user_info">
+                    <input class="popup__input popup__input_type_title" name="addCard_title" type="text" placeholder="название" required>
+                    <input class="popup__input popup__input_type_link" name="addCard_link" type="url" placeholder="ссылка на картинку" required>
+                    <button class="button popup__submit-button" type="submit">Сохранить</button>
+                </form>
+            </div>
+        </div>
+
+        <template class="elements__template">
+            <li class="elements__card">
+                <img class="elements__image" src="#" alt="фото">
+                <button class="button elements__delete-button" type="button"></button>
+                <div class="elements__card-info">
+                    <h2 class="elements__card-title"></h2>
+                    <button class="button elements__like-button" type="button"></button>
+                </div>
+            </li>
+        </template>
+
+        <div class="popup popup__card">
+            <div class="popup__card-content">
+                <button class="button popup__close-button" type="button"></button>
+                <figure class="popup__card-figure">
+                    <img class="popup__card-image" src="#" alt="фото">
+                    <figcaption class="popup__card-caption"></figcaption>
+                </figure>
+            </div>
+        </div>
+
+        <script src="./scripts/cards.js"></script>
         <script src="./scripts/index.js"></script>
 </body>
 </html>
