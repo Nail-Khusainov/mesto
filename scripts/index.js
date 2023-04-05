@@ -1,8 +1,7 @@
 // ПЕРЕМЕННЫЕ ПОПАПА РЕДАКТИРОВАНИЯ ПРОФИЛЯ
 const popupEdit = document.querySelector('.popup-edit-profile');
 const editButton = document.querySelector('.profile__edit-button');
-const editCloseButton = popupEdit.querySelector('.popup__close-button');
-const editFormElement = popupEdit.querySelector('.popup__form');
+const editFormElement = document.forms["user_info"];
 const nameInput = popupEdit.querySelector('.popup__input_type_name');
 const jobInput = popupEdit.querySelector('.popup__input_type_job');
 const nameOutput = document.querySelector('.profile__name');
@@ -11,8 +10,7 @@ const jobOutput = document.querySelector('.profile__about');
 // ПЕРЕМЕННЫЕ ПОПАПА ДОБАВЛЕНИЯ КАРТОЧЕК
 const popupAdd = document.querySelector('.popup-card-add');
 const addButton = document.querySelector('.profile__add-button');
-const addCloseButton = popupAdd.querySelector('.popup__close-button');
-const cardFormElement = popupAdd.querySelector('.popup__form');
+const cardFormElement = document.forms["card_info"];
 const titleInput = popupAdd.querySelector('.popup__input_type_title');
 const linkInput = popupAdd.querySelector('.popup__input_type_link');
 
@@ -23,14 +21,16 @@ const cardList = document.querySelector('.elements__list');
 const popupCard = document.querySelector('.popup-pic');
 const popupImage = popupCard.querySelector('.popup-pic__image');
 const popupCaption = popupCard.querySelector('.popup-pic__caption');
-const popupCardCloseButton = popupCard.querySelector('.popup__close-button');
+
+//ClOSE-BUTTONS
+const closeButtons = document.querySelectorAll('.popup__close-button');
 
 //ФУНКЦИЯ ОТКРЫТИЯ ПОПАПА
-function openPopup(popup) { //(popup added)
+function openPopup(popup) {
     popup.classList.add('popup_opened');
 }
 //ФУНКЦИЯ ЗАКРЫТИЯ ПОПАПА
-function closePopup(popup) {//(popup added)
+function closePopup(popup) {
     popup.classList.remove('popup_opened');
 }
 
@@ -38,8 +38,8 @@ function closePopup(popup) {//(popup added)
 function handleEditFormSubmit (evt) {
     evt.preventDefault();
     
-    let newName = nameInput.value;
-    let newJob = jobInput.value;
+    const newName = nameInput.value;
+    const newJob = jobInput.value;
 
     nameOutput.textContent = newName;
     jobOutput.textContent = newJob;
@@ -121,15 +121,10 @@ addButton.addEventListener('click', function() {
     openPopup(popupAdd);
   });
 
-editCloseButton.addEventListener('click', function() {
-    closePopup(popupEdit);
-});
-
-addCloseButton.addEventListener('click', function() {
-    closePopup(popupAdd);
-    cardFormElement.reset()
-});
-
-popupCardCloseButton.addEventListener('click', function() {
-    closePopup(popupCard);
-});
+// ЗАКРЫТИЕ ПОПАПОВ
+closeButtons.forEach((button) => {
+    // находим 1 раз ближайший к крестику попап 
+    const popup = button.closest('.popup');
+    // устанавливаем обработчик закрытия на крестик
+    button.addEventListener('click', () => closePopup(popup));
+  });
