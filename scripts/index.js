@@ -1,5 +1,5 @@
 // ПЕРЕМЕННЫЕ ПОПАПА РЕДАКТИРОВАНИЯ ПРОФИЛЯ
-const popupEdit = document.querySelector('.popup__edit-profile');
+const popupEdit = document.querySelector('.popup-edit-profile');
 const editButton = document.querySelector('.profile__edit-button');
 const editCloseButton = popupEdit.querySelector('.popup__close-button');
 const editFormElement = popupEdit.querySelector('.popup__form');
@@ -9,7 +9,7 @@ const nameOutput = document.querySelector('.profile__name');
 const jobOutput = document.querySelector('.profile__about');
 
 // ПЕРЕМЕННЫЕ ПОПАПА ДОБАВЛЕНИЯ КАРТОЧЕК
-const popupAdd = document.querySelector('.popup__card-add');
+const popupAdd = document.querySelector('.popup-card-add');
 const addButton = document.querySelector('.profile__add-button');
 const addCloseButton = popupAdd.querySelector('.popup__close-button');
 const cardFormElement = popupAdd.querySelector('.popup__form');
