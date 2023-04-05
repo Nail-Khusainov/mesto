@@ -20,9 +20,9 @@ const linkInput = popupAdd.querySelector('.popup__input_type_link');
 const cardList = document.querySelector('.elements__list');
 
 //ПОПАП-КАРТИНКА КАРТОЧКИ
-const popupCard = document.querySelector('.popup__pic');
-const popupImage = popupCard.querySelector('.popup__pic-image');
-const popupCaption = popupCard.querySelector('.popup__pic-caption');
+const popupCard = document.querySelector('.popup-pic');
+const popupImage = popupCard.querySelector('.popup-pic__image');
+const popupCaption = popupCard.querySelector('.popup-pic__caption');
 const popupCardCloseButton = popupCard.querySelector('.popup__close-button');
 
 //ФУНКЦИЯ ОТКРЫТИЯ ПОПАПА
