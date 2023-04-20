@@ -21,12 +21,12 @@
                 <img class="profile__image" src="./images/kusto.jpg" alt="аватар">
                 <div class="profile__info">
                     <h1 class="profile__name">Жак-Ив Кусто</h1>
-                    <button class="button profile__edit-button" type="button"></button>
+                    <button class="button open-popup-button profile__edit-button" type="button"></button>
                     <p class="profile__about">Исследователь океана</p>
                 </div>
             </div>
 
-            <button class="button profile__add-button" type="button"></button>
+            <button class="button open-popup-button profile__add-button" type="button"></button>
         </section>
 
         <section class="elements">
@@ -43,10 +43,30 @@
             <div class="popup__container">
                 <button class="button popup__close-button" type="button"></button>
                 <h2 class="popup__title">Редактировать профиль</h2>
-                <form class="popup__form" name="user_info">
-                    <input class="popup__input popup__input_type_name" name="user_name" type="text" placeholder="ваше имя">
-                    <input class="popup__input popup__input_type_job" name="user_about" type="text" placeholder="ваша профессия">
-                    <button class="button popup__submit-button" type="submit">Сохранить</button>
+                <form class="popup__form" name="user_info" novalidate>
+                    <input 
+                    class="popup__input popup__input_type_name"
+                    id="popup__input_type_name" 
+                    name="user_name" 
+                    type="text" 
+                    placeholder="ваше имя"
+                    minlength="2"
+                    maxlength="40"
+                    required>
+                    <span id="error-popup__input_type_name" class="popup__input-error"></span>
+                    
+                    <input 
+                    class="popup__input popup__input_type_job"
+                    id="popup__input_type_job" 
+                    name="user_about" 
+                    type="text" 
+                    placeholder="ваша профессия"
+                    minlength="2"
+                    maxlength="200"
+                    required>
+                    <span id="error-popup__input_type_job" class="popup__input-error"></span>
+
+                    <button class="button popup__submit-button" type="submit" disabled>Сохранить</button>
                 </form>
             </div>
         </div>
@@ -55,10 +75,28 @@
             <div class="popup__container">
                 <button class="button popup__close-button" type="button"></button>
                 <h2 class="popup__title">Новое место</h2>
-                <form class="popup__form" name="card_info">
-                    <input class="popup__input popup__input_type_title" name="addCard_title" type="text" placeholder="название" required>
-                    <input class="popup__input popup__input_type_link" name="addCard_link" type="url" placeholder="ссылка на картинку" required>
-                    <button class="button popup__submit-button" type="submit">Сохранить</button>
+                <form class="popup__form" name="card_info" novalidate>
+                    <input 
+                    class="popup__input popup__input_type_title"
+                    id="cardtitle" 
+                    name="addCard_title" 
+                    type="text" 
+                    placeholder="название" 
+                    minlength="2"
+                    maxlength="30"
+                    required>
+                    <span id="error-cardtitle" class="popup__input-error"></span>
+                    
+                    <input 
+                    class="popup__input popup__input_type_link" 
+                    name="addCard_link" 
+                    id="cardlink"
+                    type="url" 
+                    placeholder="ссылка на картинку" 
+                    required>
+                    <span id="error-cardlink" class="popup__input-error"></span>
+
+                    <button class="button popup__submit-button" type="submit" disabled>Сохранить</button>
                 </form>
             </div>
         </div>
@@ -83,8 +121,8 @@
                 </figure>
             </div>
         </div>
-
         <script src="./scripts/cards.js"></script>
         <script src="./scripts/index.js"></script>
+        <script src="./scripts/validate.js"></script>
 </body>
 </html>

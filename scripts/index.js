@@ -25,13 +25,39 @@ const popupCaption = popupCard.querySelector('.popup-pic__caption');
 //ClOSE-BUTTONS
 const closeButtons = document.querySelectorAll('.popup__close-button');
 
+nameInput.value = nameOutput.textContent;
+jobInput.value = jobOutput.textContent;
+
+
+//ФУНКЦИЯ ЗАКРТЫТИЯ ПОПАПА ЧЕРЕЗ ОВЕРЛЭЙ
+const closePopupOverlay = (evt) => {
+    evt.target === evt.currentTarget && closePopup(evt.currentTarget);
+  }
+
+function closePopupOverlayHandler(popup) {
+    popup.addEventListener('click', closePopupOverlay);
+  }
+
+//ФУНКЦИЯ ЗАКРЫТИЯ ПОПАПА КНОПКОЙ ESC
+const closePopupEsc = (evt) => {
+    if (evt.key === "Escape" ) {
+        const popupOpened = document.querySelector(".popup_opened");
+        if (popupOpened) closePopup(popupOpened);
+    };
+}
+
 //ФУНКЦИЯ ОТКРЫТИЯ ПОПАПА
 function openPopup(popup) {
     popup.classList.add('popup_opened');
+    document.addEventListener("keydown", closePopupEsc);
+    closePopupOverlayHandler(popup);
 }
+
 //ФУНКЦИЯ ЗАКРЫТИЯ ПОПАПА
 function closePopup(popup) {
     popup.classList.remove('popup_opened');
+    document.removeEventListener('keydown', closePopupEsc);
+    popup.removeEventListener('click', closePopupOverlay);
 }
 
 //ФУНКЦИЯ ОТПРАВКИ ФОРМЫ РЕДАКТИРОВАНИЯ ПРОФИЛЯ
@@ -108,7 +134,7 @@ function createCard(card) {
 //ФУНКЦИЯ ВЫВОДА ДЕФОЛТНЫХ КАРТОЧЕК
 initialCards.forEach(function(card) {
     addCard(createCard(card));
-});
+  });
 
 //СЛУШАТЕЛИ
 editButton.addEventListener('click', function() {
@@ -121,7 +147,7 @@ addButton.addEventListener('click', function() {
     openPopup(popupAdd);
   });
 
-// ЗАКРЫТИЕ ПОПАПОВ
+// ЗАКРЫТИЕ ПОПАПОВ КНОПКОЙ
 closeButtons.forEach((button) => {
     // находим 1 раз ближайший к крестику попап 
     const popup = button.closest('.popup');
