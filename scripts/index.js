@@ -28,7 +28,6 @@ const closeButtons = document.querySelectorAll('.popup__close-button');
 nameInput.value = nameOutput.textContent;
 jobInput.value = jobOutput.textContent;
 
-
 //ФУНКЦИЯ ЗАКРТЫТИЯ ПОПАПА ЧЕРЕЗ ОВЕРЛЭЙ
 const closePopupOverlay = (evt) => {
     evt.target === evt.currentTarget && closePopup(evt.currentTarget);
@@ -127,7 +126,6 @@ function createCard(card) {
     }
     cardImage.addEventListener('click', cardImagePopup);
 
-//ВОЗВРАТ КАРТОЧКИ
     return cardElement;
 }
 
