@@ -41,10 +41,23 @@ function toggleButtonValidity(form, config) {
 function enableValidation(config) {
     const forms = document.querySelectorAll(config.formSelector);
     const formsArray = Array.from(forms);
+    
+    //обработчик сброса ошибок и состояния кнопки при открытии попапа
+    const popupOpenButton = document.querySelectorAll(config.openPopupButtonSelector);
+    const popupOpenButtons = Array.from(popupOpenButton);
+    popupOpenButtons.forEach(function(openPopupButtonElement) {
+        openPopupButtonElement.addEventListener('click', function() {
+            formsArray.forEach(function(form) {
+                    resetError(form, config);
+                    toggleButtonValidity(form, config);
+            });
+        });
+    });
+
     formsArray.forEach(function(form) {
         form.addEventListener('submit', function (event) {
             event.preventDefault();
-      });
+        });
         
         const inputList = form.querySelectorAll(config.inputSelector);
         const inputListArray = Array.from(inputList);
@@ -52,20 +65,9 @@ function enableValidation(config) {
             input.addEventListener('input',  () => {
                 checkInputValidity(input, config);
                 toggleButtonValidity(form, config);
-          });
-      });
-        
-      //обработчик сброса ошибок и состояния кнопки при открытии попапа
-        const popupOpenButton = document.querySelectorAll(config.openPopupButtonSelector);
-        const popupOpenButtons = Array.from(popupOpenButton);
-        popupOpenButtons.forEach(function(openPopupButtonElement) {
-            openPopupButtonElement.addEventListener('click', function() {
-                resetError(form, config);
-                toggleButtonValidity(form, config);
             });
         });
-    
-    });
+    });          
 }
 
 //кофниг

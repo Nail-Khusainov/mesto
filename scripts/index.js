@@ -1,3 +1,4 @@
+const popups = document.querySelectorAll('.popup');
 // ПЕРЕМЕННЫЕ ПОПАПА РЕДАКТИРОВАНИЯ ПРОФИЛЯ
 const popupEdit = document.querySelector('.popup-edit-profile');
 const editButton = document.querySelector('.profile__edit-button');
@@ -22,20 +23,21 @@ const popupCard = document.querySelector('.popup-pic');
 const popupImage = popupCard.querySelector('.popup-pic__image');
 const popupCaption = popupCard.querySelector('.popup-pic__caption');
 
-//ClOSE-BUTTONS
-const closeButtons = document.querySelectorAll('.popup__close-button');
-
 nameInput.value = nameOutput.textContent;
 jobInput.value = jobOutput.textContent;
 
-//ФУНКЦИЯ ЗАКРТЫТИЯ ПОПАПА ЧЕРЕЗ ОВЕРЛЭЙ
-const closePopupOverlay = (evt) => {
-    evt.target === evt.currentTarget && closePopup(evt.currentTarget);
-  }
+//ФУНКЦИЯ ЗАКРТЫТИЯ ПОПАПА через оверлей или кнопку
 
-function closePopupOverlayHandler(popup) {
-    popup.addEventListener('click', closePopupOverlay);
-  }
+popups.forEach((popup) => {
+    popup.addEventListener('mousedown', (evt) => {
+        if (evt.target.classList.contains('popup_opened')) {
+            closePopup(popup)
+        }
+        if (evt.target.classList.contains('popup__close-button')) {
+          closePopup(popup)
+        }
+    })
+})
 
 //ФУНКЦИЯ ЗАКРЫТИЯ ПОПАПА КНОПКОЙ ESC
 const closePopupEsc = (evt) => {
@@ -143,12 +145,4 @@ editButton.addEventListener('click', function() {
 
 addButton.addEventListener('click', function() {
     openPopup(popupAdd);
-  });
-
-// ЗАКРЫТИЕ ПОПАПОВ КНОПКОЙ
-closeButtons.forEach((button) => {
-    // находим 1 раз ближайший к крестику попап 
-    const popup = button.closest('.popup');
-    // устанавливаем обработчик закрытия на крестик
-    button.addEventListener('click', () => closePopup(popup));
   });
