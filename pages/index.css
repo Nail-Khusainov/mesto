@@ -45,8 +45,6 @@
 @import url(../blocks/popup-pic/__image/popup-pic__image.css);
 @import url(../blocks/popup-pic/__caption/popup-pic__caption.css);
 
-/* mesto-6 */
-@import url(../blocks/popup/__submit-button/_disabled/popup__submit-button_disabled.css); /*неактивная кнопка отправки*/
-@import url(../blocks/popup/__input-error/popup__input-error.css); /* стиль ошибки под инпутом*/
-@import url(../blocks/popup/__input-error/_visible/popup__input-error_visible.css);/* ошибка визибл */
-@import url(../blocks/popup/__input/_invalid/popup__input_invalid.css); /* ошибка border bottom red */
+@import url(../blocks/popup/__submit-button/_disabled/popup__submit-button_disabled.css);
+@import url(../blocks/popup/__input-error/popup__input-error.css);
+@import url(../blocks/popup/__input/_invalid/popup__input_invalid.css);

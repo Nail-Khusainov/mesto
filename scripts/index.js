@@ -51,14 +51,12 @@ const closePopupEsc = (evt) => {
 function openPopup(popup) {
     popup.classList.add('popup_opened');
     document.addEventListener("keydown", closePopupEsc);
-    closePopupOverlayHandler(popup);
 }
 
 //ФУНКЦИЯ ЗАКРЫТИЯ ПОПАПА
 function closePopup(popup) {
     popup.classList.remove('popup_opened');
     document.removeEventListener('keydown', closePopupEsc);
-    popup.removeEventListener('click', closePopupOverlay);
 }
 
 //ФУНКЦИЯ ОТПРАВКИ ФОРМЫ РЕДАКТИРОВАНИЯ ПРОФИЛЯ
