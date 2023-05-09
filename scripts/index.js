@@ -1,3 +1,7 @@
+import Card from './Card.js';
+import FormValidator from './FormValidator.js';
+import { initialCards } from './cards.js';
+
 const popups = document.querySelectorAll('.popup');
 // ПЕРЕМЕННЫЕ ПОПАПА РЕДАКТИРОВАНИЯ ПРОФИЛЯ
 const popupEdit = document.querySelector('.popup-edit-profile');
@@ -88,46 +92,27 @@ function handleCardFormSubmit (evt) {
     closePopup(popupAdd);
     cardFormElement.reset()
 }
+
 // СЛУШАТЕЛЬ ОТПРАВКИ ФОРМЫ ДЛЯ КАРТОЧКИ
 cardFormElement.addEventListener('submit', handleCardFormSubmit);
 
 //ФУНКЦИЯ СОЗДАНИЯ КАРТОЧКИ
 function createCard(card) {
-    const templateCard = document.querySelector('.elements__template').content;
-    const cardElement = templateCard.querySelector('.elements__card').cloneNode(true);
-   
-    const cardImage = cardElement.querySelector('.elements__image');
-    cardImage.src = card.link;
-    cardImage.alt = card.name;
-
-    const cardTitle = cardElement.querySelector('.elements__card-title');
-    cardTitle.textContent = card.name;
-    
-//ФУНКЦИЯ УДАЛЕНИЯ КАРТОЧКИ
-    const сardDelButton = cardElement.querySelector('.elements__delete-button');
-    function deleteCard() {
-        cardElement.remove();
-    }
-    сardDelButton.addEventListener('click', deleteCard);
-
-//ФУНКЦИЯ ЛАЙКА
-    const cardLikeButton = cardElement.querySelector('.elements__like-button');
-    function like() {
-        cardLikeButton.classList.toggle('elements__like-button_active');
-    }
-    cardLikeButton.addEventListener('click', like);
-
-//ФУНКЦИЯ ПОПАПА КАРТИНКИ КАРТОЧКИ
-    function cardImagePopup() {
-        popupImage.src = card.link;
-        popupImage.alt = card.name;
-        popupCaption.textContent = card.name;
-        openPopup(popupCard);
-    }
-    cardImage.addEventListener('click', cardImagePopup);
-
-    return cardElement;
+    const cardTemplate = new Card(card, '.elements__template');
+    return cardTemplate.initializeCard();
 }
+
+const formValidator = new FormValidator({
+    formSelector: '.popup__form',
+    inputSelector: '.popup__input',
+    submitButtonSelector: '.popup__submit-button',
+    openPopupButtonSelector: '.open-popup-button',
+    inactiveButtonClass: 'popup__submit-button_disabled',
+    inputErrorClass: 'popup__input-error',
+    errorUnderlineClass: 'popup__input_invalid',
+  });
+  formValidator.enableValidation();
+
 
 //ФУНКЦИЯ ВЫВОДА ДЕФОЛТНЫХ КАРТОЧЕК
 initialCards.forEach(function(card) {
