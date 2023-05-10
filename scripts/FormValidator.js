@@ -1,6 +1,9 @@
 export default class FormValidator {
-    constructor(config) {
+    constructor(config, form) {
       this._config = config;
+      this._form = form;
+      this._inputList = Array.from(this._form.querySelectorAll(this._config.inputSelector));
+      this._subButton = this._form.querySelector(this._config.submitButtonSelector);
     }
 
     //функция показа ошибки инпута
@@ -27,66 +30,43 @@ export default class FormValidator {
     }
 
     //функция отключения кнопки сабмита
-    _disableSubButton(button) {
-      button.setAttribute('disabled', '');
-      button.classList.add(this._config.inactiveButtonClass);
+    _disableSubButton() {
+      this._subButton.setAttribute('disabled', '');
+      this._subButton.classList.add(this._config.inactiveButtonClass);
     }
 
     //функция включения кнопки сабмита
-    _enableSubButton(button) {
-      button.removeAttribute('disabled');
-      button.classList.remove(this._config.inactiveButtonClass);
+    _enableSubButton() {
+      this._subButton.removeAttribute('disabled');
+      this._subButton.classList.remove(this._config.inactiveButtonClass);
     }
 
     //функция изменения состояния кнопки сабмита в зависимости от валидности
-    toggleButtonValidity(form) {
-      const subButton = form.querySelector(this._config.submitButtonSelector);
-      if (form.checkValidity()) {
-        this._enableSubButton(subButton);
+    _toggleButtonValidity() {
+      if (this._form.checkValidity()) {
+        this._enableSubButton();
       } else {
-        this._disableSubButton(subButton);
+        this._disableSubButton();
       }
     }
 
     //функция сброса ошибок
-    resetError(form) {
-      const inputList = form.querySelectorAll(this._config.inputSelector);
-      inputList.forEach((input) => {
-        const errorMessage = document.querySelector(`#error-${input.id}`);
+    resetError() {
+        this._toggleButtonValidity(this._form);
+        this._inputList.forEach((input) => {
         this._hideInputError(input);
       });
     }
 
     //функция валидации форм
     enableValidation() {
-      const forms = document.querySelectorAll(this._config.formSelector);
-      const formsArray = Array.from(forms);
-  
-      const popupOpenButton = document.querySelectorAll(
-        this._config.openPopupButtonSelector
-      );
-      const popupOpenButtons = Array.from(popupOpenButton);
-      popupOpenButtons.forEach((openPopupButtonElement) => {
-        openPopupButtonElement.addEventListener('click', () => {
-          formsArray.forEach((form) => {
-            this.resetError(form);
-            this.toggleButtonValidity(form);
-          });
-        });
-      });
-  
-      formsArray.forEach((form) => {
-        form.addEventListener('submit', (event) => {
-          event.preventDefault();
-        });
-  
-        const inputList = form.querySelectorAll(this._config.inputSelector);
-        const inputListArray = Array.from(inputList);
-        inputListArray.forEach((input) => {
-          input.addEventListener('input', () => {
-            this._checkInputValidity(input);
-            this.toggleButtonValidity(form);
-          });
+
+      this._toggleButtonValidity(this._form);
+
+      this._inputList.forEach((input) => {
+        input.addEventListener('input', () => {
+          this._checkInputValidity(input);
+          this._toggleButtonValidity(this._form);
         });
       });
     }

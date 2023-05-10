@@ -27,8 +27,9 @@ const popupCard = document.querySelector('.popup-pic');
 const popupImage = popupCard.querySelector('.popup-pic__image');
 const popupCaption = popupCard.querySelector('.popup-pic__caption');
 
-nameInput.value = nameOutput.textContent;
-jobInput.value = jobOutput.textContent;
+const formsArray = Array.from(document.forms);
+
+const formValidatorPlus = {};
 
 //ФУНКЦИЯ ЗАКРТЫТИЯ ПОПАПА через оверлей или кнопку
 
@@ -98,11 +99,12 @@ cardFormElement.addEventListener('submit', handleCardFormSubmit);
 
 //ФУНКЦИЯ СОЗДАНИЯ КАРТОЧКИ
 function createCard(card) {
-    const cardTemplate = new Card(card, '.elements__template');
+    const cardTemplate = new Card(card, '.elements__template', cardImagePopup);
     return cardTemplate.initializeCard();
 }
 
-const formValidator = new FormValidator({
+formsArray.forEach(item => {
+    const formValidator = new FormValidator({
     formSelector: '.popup__form',
     inputSelector: '.popup__input',
     submitButtonSelector: '.popup__submit-button',
@@ -110,9 +112,22 @@ const formValidator = new FormValidator({
     inactiveButtonClass: 'popup__submit-button_disabled',
     inputErrorClass: 'popup__input-error',
     errorUnderlineClass: 'popup__input_invalid',
-  });
-  formValidator.enableValidation();
+  },
+    item);
 
+    const formName = item.getAttribute('name');
+    formValidatorPlus[formName] = formValidator;
+    
+    formValidator.enableValidation();
+})
+
+//ФУНКЦИЯ ПОПАПА КАРТИНКИ КАРТОЧКИ
+function cardImagePopup(link, name) {
+    popupImage.src = link;
+    popupImage.alt = name;
+    popupCaption.textContent = name;
+    openPopup(popupCard);
+}
 
 //ФУНКЦИЯ ВЫВОДА ДЕФОЛТНЫХ КАРТОЧЕК
 initialCards.forEach(function(card) {
@@ -124,6 +139,8 @@ editButton.addEventListener('click', function() {
     openPopup(popupEdit);
     nameInput.value = nameOutput.textContent;
     jobInput.value = jobOutput.textContent;
+    
+    formValidatorPlus['user_info'].resetError();
   });
 
 addButton.addEventListener('click', function() {
