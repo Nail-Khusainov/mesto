@@ -28,8 +28,8 @@ export default class Card {
 
   //создаем карту
   initializeCard() {
-    this._fillTemplate(this._cardElement);
-    this._setEventListeners(this._cardElement);
+    this._fillTemplate();
+    this._setEventListeners();
     return this._cardElement;
   }
 
@@ -39,7 +39,7 @@ export default class Card {
   }
 
   //ФУНКЦИЯ ЛАЙКА
-    _like() {
+    _toggleLike() {
       this._likeButton.classList.toggle('elements__like-button_active');
   }
 
@@ -48,7 +48,7 @@ export default class Card {
 
       this._deleteButton.addEventListener('click', () => this._deleteCard());
 
-      this._likeButton.addEventListener('click', () => this._like());
+      this._likeButton.addEventListener('click', () => this._toggleLike());
 
       this._cardImage.addEventListener('click', () => this._cardImagePopup(this._link, this._name)) 
   }

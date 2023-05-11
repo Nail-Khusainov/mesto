@@ -91,7 +91,8 @@ function handleCardFormSubmit (evt) {
     const newCard = {name: titleInput.value, link: linkInput.value};
     addCard(createCard(newCard));
     closePopup(popupAdd);
-    cardFormElement.reset()
+    //СБРОС ИНПУТОВ
+    cardFormElement.reset();
 }
 
 // СЛУШАТЕЛЬ ОТПРАВКИ ФОРМЫ ДЛЯ КАРТОЧКИ
@@ -140,7 +141,7 @@ editButton.addEventListener('click', function() {
     nameInput.value = nameOutput.textContent;
     jobInput.value = jobOutput.textContent;
     
-    formValidatorPlus['user_info'].resetError();
+    formValidatorPlus['user_info'].resetValidation();
   });
 
 addButton.addEventListener('click', function() {
