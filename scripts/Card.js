@@ -1,9 +1,9 @@
 export default class Card {
-  constructor(data, templateSelector, cardImagePopup) {
+  constructor(data, templateSelector, handleCardClick) {
     this._name = data.name;
     this._link = data.link;
     this._templateSelector = templateSelector;
-    this._cardImagePopup = cardImagePopup;
+    this._handleCardClick = handleCardClick;
     this._cardElement = this._getTemplate();
     this._cardImage = this._cardElement.querySelector('.elements__image');
     this._cardTitle = this._cardElement.querySelector('.elements__card-title');
@@ -50,6 +50,6 @@ export default class Card {
 
       this._likeButton.addEventListener('click', () => this._toggleLike());
 
-      this._cardImage.addEventListener('click', () => this._cardImagePopup(this._link, this._name)) 
+      this._cardImage.addEventListener('click', () => this._handleCardClick(this._link, this._name)) 
   }
 }
