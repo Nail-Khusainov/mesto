@@ -6,19 +6,14 @@ import PopupWithForm from './PopupWithForm.js';
 import UserInfo from './UserInfo.js';
 import Section from './Section.js';
 
-// constants
 const popupEdit = document.querySelector('.popup-edit-profile');
 const editButton = document.querySelector('.profile__edit-button');
 const nameInput = popupEdit.querySelector('.popup__input_type_name');
 const jobInput = popupEdit.querySelector('.popup__input_type_job');
 
-const popupAdd = document.querySelector('.popup-card-add');
 const addButton = document.querySelector('.profile__add-button');
 const cardFormElement = document.forms["card_info"];
-const titleInput = popupAdd.querySelector('.popup__input_type_title');
-const linkInput = popupAdd.querySelector('.popup__input_type_link');
 
-const cardList = document.querySelector('.elements__list');
 const formsArray = Array.from(document.forms);
 const formValidatorPlus = {};
 
@@ -31,15 +26,19 @@ popupCardForm.setEventListeners();
 const popupWithImage = new PopupWithImage('.popup-pic');
 popupWithImage.setEventListeners();
 
+const cardsSection = new Section({
+    items: initialCards,
+    renderer: (item) => createCard(item)
+},
+    '.elements__list'
+);
 
-///ФУНКЦИЯ ВВОДА ДАННЫХ НОВОЙ КАРТОЧКИ
-function handleCardFormSubmit() {
-    const newCard = { name: titleInput.value, link: linkInput.value };
-    addCard(createCard(newCard));
-    // card.addItem(createCard(newCard));
+cardsSection.renderItems();
 
-    //СБРОС ИНПУТОВ
-    cardFormElement.reset();
+//ФУНКЦИЯ СОЗДАНИЯ КАРТОЧКИ
+function createCard(card) {
+    const cardTemplate = new Card(card, '.elements__template', handleCardClick);
+    return cardTemplate.initializeCard();
 }
 
 const userInfo = new UserInfo({
@@ -47,7 +46,17 @@ const userInfo = new UserInfo({
     userAboutSelector: '.profile__about'
 });
 
-//ФУНКЦИЯ ОТПРАВКИ ФОРМЫ РЕДАКТИРОВАНИЯ ПРОФИЛЯ
+function handleCardFormSubmit(data) {
+    const newCard = { 
+        name: data['addCard_title'],
+        link: data['addCard_link']
+    };
+    cardsSection.addItem(newCard);
+
+    //СБРОС ИНПУТОВ
+    cardFormElement.reset();
+}
+
 function handleEditFormSubmit({ user_name, user_about }) {
     userInfo.setUserInfo({
         userNameInput: user_name,
@@ -57,17 +66,6 @@ function handleEditFormSubmit({ user_name, user_about }) {
 
 function handleCardClick(link, name) {
     popupWithImage.open(link, name);
-}
-
-// // ФУНКЦИЯ ДОБАВЛЕНИЯ НОВОЙ КАРТОЧКИ
-function addCard(item) {
-    cardList.prepend(item);
-}
-
-//ФУНКЦИЯ СОЗДАНИЯ КАРТОЧКИ
-function createCard(card) {
-    const cardTemplate = new Card(card, '.elements__template', handleCardClick);
-    return cardTemplate.initializeCard();
 }
 
 formsArray.forEach(item => {
@@ -87,15 +85,6 @@ formsArray.forEach(item => {
 
     formValidator.enableValidation();
 })
-
-const card = new Section({
-    items: initialCards,
-    renderer: (item) => createCard(item)
-},
-    '.elements__list'
-);
-
-card.renderItems();
 
 //СЛУШАТЕЛИ
 editButton.addEventListener('click', () => {
