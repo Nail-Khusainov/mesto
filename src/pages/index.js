@@ -1,12 +1,12 @@
-import Card from './components/Card.js';
-import FormValidator from './components/FormValidator.js';
-import { initialCards } from './utils/cards.js';
-import PopupWithImage from './components/PopupWithImage.js';
-import PopupWithForm from './components/PopupWithForm.js';
-import UserInfo from './components/UserInfo.js';
-import Section from './components/Section.js';
+import Card from '../components/Card.js';
+import FormValidator from '../components/FormValidator.js';
+import { initialCards } from '../utils/cards.js';
+import PopupWithImage from '../components/PopupWithImage.js';
+import PopupWithForm from '../components/PopupWithForm.js';
+import UserInfo from '../components/UserInfo.js';
+import Section from '../components/Section.js';
 
-import './pages/index.css'
+import './index.css'
 
 const popupEdit = document.querySelector('.popup-edit-profile');
 const editButton = document.querySelector('.profile__edit-button');
@@ -30,7 +30,7 @@ popupWithImage.setEventListeners();
 
 const cardsSection = new Section({
     items: initialCards,
-    renderer: (item) => createCard(item)
+    renderer: createCard
 },
     '.elements__list'
 );
@@ -54,9 +54,6 @@ function handleCardFormSubmit(data) {
         link: data['addCard_link']
     };
     cardsSection.addItem(newCard);
-
-    //СБРОС ИНПУТОВ
-    cardFormElement.reset();
 }
 
 function handleEditFormSubmit({ user_name, user_about }) {
