@@ -48,6 +48,7 @@ const userInfo = new UserInfo({
     userAboutSelector: '.profile__about'
 });
 
+
 function handleCardFormSubmit(data) {
     const newCard = { 
         name: data['addCard_title'],
@@ -63,6 +64,7 @@ function handleEditFormSubmit({ user_name, user_about }) {
     });
 };
 
+//слушатель попапа карточки
 function handleCardClick(link, name) {
     popupWithImage.open(link, name);
 }
