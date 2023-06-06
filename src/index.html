@@ -17,11 +17,14 @@
         
         <section class="profile">
             <div class="profile__user">
-                <img class="profile__image" src="<%=require('./images/kusto.jpg')%>" alt="аватар">
+                <div class="profile__avatar">
+                    <img class="profile__image" src="#" alt="аватар">
+                    <button class="profile__avatar-edit-btn"></button>
+                </div>
                 <div class="profile__info">
-                    <h1 class="profile__name">Жак-Ив Кусто</h1>
+                    <h1 class="profile__name" id="profile_name"></h1>
                     <button class="button open-popup-button profile__edit-button" type="button"></button>
-                    <p class="profile__about">Исследователь океана</p>
+                    <p class="profile__about"></p>
                 </div>
             </div>
 
@@ -70,6 +73,35 @@
             </div>
         </div>
 
+        <div class="popup popup-edit-avatar">
+            <div class="popup__container">
+                <button class="button popup__close-button" type="button"></button>
+                <h2 class="popup__title">Обновить аватар</h2>
+                <form class="popup__form" name="card_info" novalidate>                    
+                    <input 
+                    class="popup__input popup__input_type_link" 
+                    name="user_avatar" 
+                    id="cardlink"
+                    type="url" 
+                    placeholder="ссылка на картинку" 
+                    required>
+                    <span id="error-cardlink" class="popup__input-error"></span>
+                    <button class="button popup__submit-button" type="submit" disabled>Сохранить</button>
+                </form>
+            </div>
+        </div>
+        
+
+        <div class="popup popup-card-confirm">
+            <div class="popup__container">
+                <button class="button popup__close-button" type="button"></button>
+                <h2 class="popup__title">Вы уверены?</h2>
+                <form class="popup__form" name="card_info" novalidate>
+                    <button class="button popup__submit-button" type="submit" disabled>Да</button>
+                </form>
+            </div>
+        </div>
+
         <div class="popup popup-card-add">
             <div class="popup__container">
                 <button class="button popup__close-button" type="button"></button>
@@ -95,7 +127,7 @@
                     required>
                     <span id="error-cardlink" class="popup__input-error"></span>
 
-                    <button class="button popup__submit-button" type="submit" disabled>Сохранить</button>
+                    <button class="button popup__submit-button" type="submit" disabled>Создать</button>
                 </form>
             </div>
         </div>
@@ -106,7 +138,10 @@
                 <button class="button elements__delete-button" type="button"></button>
                 <div class="elements__card-info">
                     <h2 class="elements__card-title"></h2>
-                    <button class="button elements__like-button" type="button"></button>
+                    <div class="elements__likes-section">
+                        <button class="button elements__like-button" type="button"></button>
+                        <p class="elements__likes-counter"></p>
+                    </div>
                 </div>
             </li>
         </template>
