@@ -18,5 +18,7 @@
 - АДАПТИВНАЯ ВЕРСТКА
 - МЕТОДОЛОГИЯ: БЭМ NESTED
 - JS
+- WEBPACK
+- API
 
 Link https://nail-khusainov.github.io/mesto/

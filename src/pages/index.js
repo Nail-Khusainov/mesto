@@ -126,7 +126,6 @@ function createCard(card) {
         { likeButtonStatus: checkLikeStatus(card.likes) });
 
     return cardTemplate.initializeCard();
-
 }
 
 function openConfirmPopup(card) {
