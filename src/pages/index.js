@@ -46,7 +46,6 @@ const api = new Api(
 );
 
 //Добавляем данные пользователя и карточки с сервера
-
 Promise.all([api.getUserInfoFromServer(), api.getInitialCards()])
     // тут деструктурируете ответ от сервера, чтобы было понятнее, что пришло
     .then(([userData, cards]) => {
@@ -62,32 +61,6 @@ Promise.all([api.getUserInfoFromServer(), api.getInitialCards()])
     .catch(error => {
         console.log(`Error loading data: ${error}`);
     });
-
-// api.getUserInfoFromServer()
-//     .then(res => {
-//         userInfo.setUserInfo({
-//             userNameInput: res.name,
-//             userAboutInput: res.about,
-//             userId: res._id
-//         });
-//         userInfo.setAvatar({
-//             userAvatar: res.avatar
-//         });
-
-//     })
-//     .catch((error) => {
-//         console.log(`Error loading user info: ${error}`);
-//     });
-
-// //Добавляем карточки с сервера
-// api.getInitialCards()
-//     .then((res) => {
-//         cardsSection.setItems(res.reverse());
-//         cardsSection.renderItems();
-//     })
-//     .catch((error) => {
-//         console.log(`Error loading initial cards: ${error}`);
-//     });
 
 const cardsSection = new Section(
     {
@@ -148,75 +121,6 @@ function createCard(card) {
 function openConfirmPopup(card) {
     popupWithConfirmation.open(card)
 }
-
-// function handleCardFormSubmit({ addCard_title, addCard_link }) {
-//     const newCard = {
-//         name: addCard_title,
-//         link: addCard_link
-//     };
-//     api
-//         .setCard(newCard)
-//         .then((res) => {
-//             cardsSection.addItem(res);
-//             popupCardForm.close()
-//         })
-//         .catch((error) => {
-//             console.log(`Error card add: ${error}`);
-//         })
-//         .finally(() => {
-//             popupCardForm.resetButtonLoadingText()
-//         })
-// };
-
-// function handleConfirmFormSubmit(card) {
-//     api
-//         .deleteCard(card.getID())
-//         .then(() => {
-//             card.deleteCard();
-//             popupWithConfirmation.close()
-//         })
-//         .catch((error) => {
-//             console.log(`Error delete card: ${error}`);
-//         })
-//         .finally(() => {
-//             popupWithConfirmation.resetButtonLoadingText()
-//         })
-// };
-
-// function handleEditFormSubmit({ user_name, user_about }) {
-//     api
-//         .setNewUserInfo({ user_name, user_about })
-//         .then((res) => {
-//             userInfo.setUserInfo({
-//                 userNameInput: res.name,
-//                 userAboutInput: res.about
-//             });
-//             popupEditForm.close()
-//         })
-//         .catch((error) => {
-//             console.log(`Error user edit form: ${error}`);
-//         })
-//         .finally(() => {
-//             popupEditForm.resetButtonLoadingText()
-//         })
-// };
-
-// function handleAvatarFormSubmit({ user_avatar }) {
-//     api
-//         .setAvatar({ user_avatar })
-//         .then((res) => {
-//             userInfo.setAvatar({
-//                 userAvatar: res.avatar,
-//             });
-//             popupAvatarForm.close()
-//         })
-//         .catch((error) => {
-//             console.log(`Error set avatar: ${error}`);
-//         })
-//         .finally(() => {
-//             popupAvatarForm.resetButtonLoadingText()
-//         })
-// };
 
 function handleSubmit(request, popupInstance, loadingText) {
 
@@ -292,13 +196,6 @@ function handleCardFormSubmit({ addCard_title, addCard_link }) {
     handleSubmit(makeRequest, popupCardForm);
 }
 
-
-
-
-
-
-
-
 //слушатель попапа карточки
 function handleCardClick(link, name) {
     popupWithImage.open(link, name);
@@ -326,8 +223,6 @@ formsArray.forEach(item => {
 editButton.addEventListener('click', () => {
     popupEditForm.open();
     const { user_name, user_about } = userInfo.getUserInfo();
-
-    // formValidatorPlus['user_info'].resetValidation();
 
     nameInput.value = user_name;
     jobInput.value = user_about;

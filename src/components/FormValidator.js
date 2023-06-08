@@ -50,14 +50,6 @@ export default class FormValidator {
     }
   }
 
-  //функция сброса ошибок
-  // resetValidation() {
-  //   this._toggleButtonValidity();
-  //   this._inputList.forEach((input) => {
-  //     this._hideInputError(input);
-  //   });
-  // }
-
   //функция валидации форм
   enableValidation() {
 

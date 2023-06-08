@@ -5,7 +5,6 @@ export default class PopupWithConfirmation extends Popup {
         super(popupSelector);
         this._submitHandler = submitHandler;
         this._submitForm = this._popup.querySelector('.popup__form');
-        // this._defaultSubmitButtonText = defaultSubmitButtonText;
         this._submitButtonText = this._submitButton.textContent
     }
 
@@ -13,24 +12,7 @@ export default class PopupWithConfirmation extends Popup {
     open(card) {
         super.open();
         this.card = card;
-        // this.resetButtonLoadingText()
     }
-
-    // setButtonLoadingText() {
-    //     this._submitButton.textContent = "Удаление...";
-    // }
-
-    // resetButtonLoadingText() {
-    //     this._submitButton.textContent = this._defaultSubmitButtonText;
-    // }
-
-    // renderLoading(isLoading, loadingText) {
-    //     if (isLoading) {
-    //         this._submitButton.textContent = loadingText;
-    //     } else {
-    //         this._submitButton.textContent = this._defaultSubmitButtonText;
-    //     }
-    // }
 
     renderLoading(isLoading, loadingText = 'Удаление...') {
         if (isLoading) {
@@ -48,8 +30,6 @@ export default class PopupWithConfirmation extends Popup {
             evt.preventDefault();
 
             this._submitHandler(this.card);
-            // this.setButtonLoadingText();
-            // this.close();
         });
     }
 }
