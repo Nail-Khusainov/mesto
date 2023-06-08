@@ -16,17 +16,18 @@ export default class UserInfo {
         }
     }
 
-    setUserInfo({ userNameInput, userAboutInput, userId }) {
-        this._userName.textContent = userNameInput;
-        this._userAbout.textContent = userAboutInput;
-        this.id = userId;
+    setUserInfo({ name, about, avatar, _id }) {
+        this._userName.textContent = name;
+        this._userAbout.textContent = about;
+        this._avatar = avatar;
+        this.userId = _id;
     }
 
-    setAvatar( { userAvatar }) {
-        this._userAvatar.src = userAvatar;
+    setAvatar({ avatar }) {
+        this._userAvatar.src = avatar;
     }
 
-    getUserId() {
-        return this.id;
-    }
+    // getUserId() {
+    //     return this.id;
+    // }
 }
